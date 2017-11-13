@@ -7,8 +7,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -22,6 +25,7 @@ import static com.skuu.einsteinopenday.R.id.map;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback
 {
+    private Button[] btnCategorie = new Button[4];
     private GoogleMap mMap;
     private LatLng[] aule =
             {
@@ -48,8 +52,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Toolbar toolbar = (Toolbar)this.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        resetCategory(0);
     }
 
+    // Inflate the toolbar menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
@@ -58,14 +65,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         return true;
     }
 
+    // Load the map
     @Override
     public void onMapReady(GoogleMap googleMap)
     {
         // Inizializza la mappa
         mMap = googleMap;
-        mMap.setMinZoomPreference(18);
+        mMap.setMinZoomPreference(17.7f);
         mMap.getUiSettings().setZoomControlsEnabled(true); // Show the zoom buttons
-        mMap.getUiSettings().setMapToolbarEnabled(false); // Show the zoom buttons
+        mMap.getUiSettings().setMapToolbarEnabled(false); // Disable the go to google maps buttons
 
         // Center the camera on the school
         final LatLngBounds superficieScuola = new LatLngBounds(new LatLng(45.615673, 9.382930), new LatLng(45.617378, 9.384733));
@@ -86,5 +94,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         {
             mMap.addMarker(new MarkerOptions().position(aule[i]));
         }
+    }
+
+    public void btnSezioneClick(View v)
+    {
+        Log.d("Ciao", "Ciao btn sezione");
+    }
+
+    void resetCategory(int cat)
+    {
+
     }
 }

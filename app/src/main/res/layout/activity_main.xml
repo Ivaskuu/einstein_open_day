@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     tools:context="com.skuu.einsteinopenday.MainActivity">
 
     <android.support.v7.widget.Toolbar
@@ -13,13 +13,16 @@
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:layout_alignParentTop="true"
         app:theme="@style/ThemeOverlay.AppCompat.Dark"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -31,17 +34,74 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="Ciao a tutti"
+                android:text="@string/app_name"
+                android:textStyle="bold"
+                android:textSize="20sp"
                 android:textColor="#FFFFFF"/>
         </LinearLayout>
-
     </android.support.v7.widget.Toolbar>
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <!--<LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:background="@color/colorPrimaryDark">
 
-</LinearLayout>
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_reorder_24dp"
+            android:background="@android:color/transparent"
+            android:onClick="btnSezioneClick"/>
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_memory_24dp"
+            android:background="@color/colorPrimary"
+            android:onClick="btnSezioneClick"/>
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_brush_24dp"
+            android:background="@android:color/transparent"
+            android:onClick="btnSezioneClick"/>
+
+        <ImageButton
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:padding="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_flask_24dp"
+            android:background="@android:color/transparent"
+            android:onClick="btnSezioneClick"/>
+
+    </LinearLayout>-->
+
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/bottomNavigationBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#00BFA5"
+        android:layout_alignParentBottom="true"
+        app:itemIconTint="#FFF"
+        app:itemTextColor="#FFF"
+        app:menu="@menu/menu_category" />
+
+    <fragment
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:layout_above="@id/bottomNavigationBar"
+        android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+</RelativeLayout>
