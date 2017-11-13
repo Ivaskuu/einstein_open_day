@@ -3,14 +3,15 @@ package com.skuu.einsteinopenday;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.View;
+import android.view.MenuItem;
 import android.widget.Button;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -45,15 +46,55 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_main);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(map);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(map);
         mapFragment.getMapAsync(this);
 
         Toolbar toolbar = (Toolbar)this.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        resetCategory(0);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView)this.findViewById(R.id.bottomNavigationBar);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener
+        (
+            new BottomNavigationView.OnNavigationItemSelectedListener()
+            {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item)
+                {
+                    mMap.clear();
+
+                    switch (item.getItemId())
+                    {
+                        case R.id.action_info:
+                            for(int i = 0; i < aule.length; i += 2)
+                            {
+                                mMap.addMarker(new MarkerOptions().position(aule[i]));
+                            }
+                            break;
+                        case R.id.action_ele:
+                            for(int i = 0; i < aule.length; i += 3)
+                            {
+                                mMap.addMarker(new MarkerOptions().position(aule[i]));
+                            }
+                            break;
+                        case R.id.action_bio:
+                            for(int i = 0; i < aule.length; i++)
+                            {
+                                mMap.addMarker(new MarkerOptions().position(aule[i]));
+                            }
+                            break;
+                        case R.id.action_art:
+                            for(int i = 0; i < aule.length; i++)
+                            {
+                                mMap.addMarker(new MarkerOptions().position(aule[i]));
+                            }
+                            break;
+                    }
+                    return true;
+                }
+            }
+        );
     }
 
     // Inflate the toolbar menu
@@ -94,15 +135,5 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         {
             mMap.addMarker(new MarkerOptions().position(aule[i]));
         }
-    }
-
-    public void btnSezioneClick(View v)
-    {
-        Log.d("Ciao", "Ciao btn sezione");
-    }
-
-    void resetCategory(int cat)
-    {
-
     }
 }
