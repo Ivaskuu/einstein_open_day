@@ -1,6 +1,7 @@
 package com.skuu.einsteinopenday;
 
 import android.Manifest;
+import android.app.Dialog;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,7 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -20,24 +21,14 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import static com.skuu.einsteinopenday.R.id.map;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback
 {
-    private Button[] btnCategorie = new Button[4];
     private GoogleMap mMap;
-    private LatLng[] aule =
-            {
-                    new LatLng(45.616608, 9.384372), // Lab Cisco (sistemi)
-                    new LatLng(45.616257, 9.384769), // Polifunzionale
-                    new LatLng(45.616203, 9.384639), // Lab info
-                    new LatLng(45.615969, 9.384042), // Lab Sistemi 1
-                    new LatLng(45.615931, 9.383960), // Lab Sistemi 2
-                    new LatLng(45.616265, 9.384343), // Paninaro 1
-                    new LatLng(45.616726, 9.383933), // Paninaro 2
-            };
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -55,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView)this.findViewById(R.id.bottomNavigationBar);
 
-        bottomNavigationView.setOnNavigationItemSelectedListener
+        bottomNavigationView.setOnNavigationItemSelectedListener // On bottom navigation view click
         (
             new BottomNavigationView.OnNavigationItemSelectedListener()
             {
@@ -67,27 +58,27 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     switch (item.getItemId())
                     {
                         case R.id.action_info:
-                            for(int i = 0; i < aule.length; i += 2)
+                            for(int i = 0; i < ListaAule.adule.length; i++)
                             {
-                                mMap.addMarker(new MarkerOptions().position(aule[i]));
+                                if(ListaAule.adule[i].category == 0) mMap.addMarker(new MarkerOptions().position(ListaAule.adule[i].pos));
                             }
                             break;
                         case R.id.action_ele:
-                            for(int i = 0; i < aule.length; i += 3)
+                            for(int i = 0; i < ListaAule.adule.length; i++)
                             {
-                                mMap.addMarker(new MarkerOptions().position(aule[i]));
+                                if(ListaAule.adule[i].category == 1) mMap.addMarker(new MarkerOptions().position(ListaAule.adule[i].pos));
                             }
                             break;
                         case R.id.action_bio:
-                            for(int i = 0; i < aule.length; i++)
+                            for(int i = 0; i < ListaAule.adule.length; i++)
                             {
-                                mMap.addMarker(new MarkerOptions().position(aule[i]));
+                                if(ListaAule.adule[i].category == 2) mMap.addMarker(new MarkerOptions().position(ListaAule.adule[i].pos));
                             }
                             break;
                         case R.id.action_art:
-                            for(int i = 0; i < aule.length; i++)
+                            for(int i = 0; i < ListaAule.adule.length; i++)
                             {
-                                mMap.addMarker(new MarkerOptions().position(aule[i]));
+                                if(ListaAule.adule[i].category == 3) mMap.addMarker(new MarkerOptions().position(ListaAule.adule[i].pos));
                             }
                             break;
                     }
@@ -131,9 +122,43 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setMyLocationEnabled(true);
 
         // Aggiunge i marker delle aule
-        for(int i = 0; i < aule.length; i++)
+        for(int i = 0; i < ListaAule.adule.length; i++)
         {
-            mMap.addMarker(new MarkerOptions().position(aule[i]));
+            mMap.addMarker(new MarkerOptions()
+                    .position(ListaAule.adule[i].pos)
+                    .title("Aula " + ListaAule.adule[i].aulaNum));
+
+            mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener()
+            {
+                @Override
+                public boolean onMarkerClick(Marker marker)
+                {
+                    // Custom dialog
+                    final Dialog dialog = new Dialog(MainActivity.this);
+                    dialog.setContentView(R.layout.lab_dialog);
+
+                    for(int j = 0; j < ListaAule.adule.length; j++)
+                    {
+
+                    }
+
+                    // set the custom dialog components - text, image and button
+                    TextView text = (TextView) dialog.findViewById(R.id.txt_aula);
+                    text.setText("Aula 23");
+
+                    /*Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+                    // if button is clicked, close the custom dialog
+                    dialogButton.setOnClickListener(new OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    });*/
+
+                    dialog.show();
+                    return false;
+                }
+            });
         }
     }
 }
