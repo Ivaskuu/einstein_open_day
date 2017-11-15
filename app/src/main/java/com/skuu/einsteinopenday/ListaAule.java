@@ -13,7 +13,7 @@ public class ListaAule
                             new Attivita
                                     ("Creazione di un'applicazione",
                                             "Sei sempre stato curioso come si fanno le app ? Impara a creare una app insieme al prof. Descrizione molto lunga.",
-                                            "08h30 - 10h30")
+                                            "08h30 - 10h30"),
                     }),
             new Aula(12, 0, new LatLng(45.616257, 9.384769), new Attivita[] // Polifunzionale
                     {
