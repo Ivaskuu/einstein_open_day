@@ -38,8 +38,7 @@ public class AdapterListaAttivita extends ArrayAdapter<Attivita>
 
         textTitolo.setText(attivita.nomeAtt);
         //textDesc.setText(attivita.desc);
-        img.setImageResource(R.drawable.lab_info);
-        img.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        img.setImageResource(attivita.imgRes);
 
         return convertView;
     }

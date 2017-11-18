@@ -9,17 +9,20 @@ public class Attivita
     public String nomeAtt;
     public String prof;
     public String desc;
+    public int imgRes;
 
-    public Attivita(String nomeAtt, String prof)
+    public Attivita(String nomeAtt, String prof, int imgRes)
     {
         this.nomeAtt = nomeAtt;
         this.prof = prof;
+        this.imgRes = imgRes;
     }
 
-    public Attivita(String nomeAtt, String prof, String desc)
+    public Attivita(String nomeAtt, String prof, String desc, int imgRes)
     {
         this.nomeAtt = nomeAtt;
         this.prof = prof;
         this.desc = desc;
+        this.imgRes = imgRes;
     }
 }

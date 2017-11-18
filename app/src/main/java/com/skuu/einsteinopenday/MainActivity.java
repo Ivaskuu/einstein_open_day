@@ -19,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -235,9 +236,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Set the custom dialog components - text, image and button
         TextView textAttivita = (TextView) dialog.findViewById(R.id.text_attivita);
         TextView textProf = (TextView) dialog.findViewById(R.id.text_prof);
+        ImageView img = (ImageView) dialog.findViewById(R.id.img_lab);
 
         textAttivita.setText(ListaAule.adule[pos].attivita.nomeAtt);
         textProf.setText(ListaAule.adule[pos].attivita.prof);
+        img.setImageResource(ListaAule.adule[pos].attivita.imgRes);
 
         /*Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
         // if button is clicked, close the custom dialog

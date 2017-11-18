@@ -17,7 +17,8 @@
             android:id="@+id/img_attivita_tile"
             android:layout_width="130dp"
             android:layout_height="match_parent"
-            android:scaleType="centerInside" />
+            android:src="@drawable/lab_info"
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
