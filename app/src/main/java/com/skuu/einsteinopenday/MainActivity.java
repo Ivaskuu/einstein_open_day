@@ -19,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 {
     private GoogleMap mMap;
     private ArrayList<MarkerOptions> markers = new ArrayList<>();
+
+    private final int[] categoriesName = {R.string.menu_cat_info, R.string.menu_cat_ele, R.string.menu_cat_bio, R.string.menu_cat_art};
+    private final int[] categoriesIcon = {R.drawable.ic_reorder_24dp, R.drawable.ic_memory_24dp, R.drawable.ic_flask_24dp, R.drawable.ic_brush_24dp};
 
     private final int DEFAULT_SWIPE_MIN_DISTANCE = 120;
     private int swipeMinDistance = 120;
@@ -78,6 +82,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             }
         );
+        bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener()
+        {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item)
+            {
+                showListaAttivita(null);
+            }
+        });
 
         final GestureDetector gdt = new GestureDetector(new BottomNavigationBarGestureListener());
         for(int i = 0; i < bottomNavigationView.getTouchables().size(); i++)
@@ -123,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         initMarkers();
         showMarkers(0);
 
+        // Show the lab dialog on marker click
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener()
         {
             @Override
@@ -130,6 +143,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             {
                 onMarkerPress(marker);
                 return false;
+            }
+        });
+
+        // Show the lab dialog on infowindow click
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener()
+        {
+            @Override
+            public void onInfoWindowClick(Marker arg0)
+            {
+                onMarkerPress(arg0);
             }
         });
     }
@@ -194,7 +217,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
         // Inflate the bottom sheet dialog
-        BottomSheetDialog dialog = new BottomSheetDialog(this);
+        final BottomSheetDialog dialog = new BottomSheetDialog(this);
         View dialogView = getLayoutInflater().inflate(R.layout.bottom_sheet_lista_attivita, null);
 
         // Init the listaAttivita
@@ -202,6 +225,20 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         AdapterListaAttivita adapter = new AdapterListaAttivita(this, listaAttivita);
         listView.setAdapter(adapter);
 
+        ImageView imgCat = (ImageView)dialogView.findViewById(R.id.img_category);
+        TextView textCat = (TextView)dialogView.findViewById(R.id.text_category);
+        ImageButton btnClose = (ImageButton)dialogView.findViewById(R.id.btn_close_dialog);
+
+        textCat.setText(getResources().getString(categoriesName[currentCategory]));
+        imgCat.setImageResource(categoriesIcon[currentCategory]);
+        btnClose.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                dialog.dismiss();
+            }
+        });
 
         dialog.setContentView(dialogView);
         dialog.show();

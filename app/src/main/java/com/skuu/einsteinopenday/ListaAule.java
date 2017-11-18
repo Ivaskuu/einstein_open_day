@@ -109,6 +109,12 @@ public class ListaAule
                                     "Prof. Purgatorio - Prof. Campesan",
                                     R.drawable.html)
             ),
+            new Aula("Lab. Cisco", 0, new LatLng(45.616597, 9.384398),
+                    new Attivita
+                            ("Incontriamo gli apparati Cisco",
+                                    "Prof. Catalano - Prof. Gaglione",
+                                    R.drawable.cisco)
+            ),
             new Aula(20, -1, new LatLng(45.617072, 9.383625),
                     new Attivita
                             ("Le certificazioni linguistiche… una finestra sul mondo!",
@@ -120,12 +126,6 @@ public class ListaAule
                             ("Alternanza Scuola Lavoro",
                                     "Prof. Russo",
                                     R.drawable.ufficio)
-            ),
-            new Aula("Lab. Cisco", 0, new LatLng(45.616597, 9.384398),
-                    new Attivita
-                            ("Incontriamo gli apparati Cisco",
-                                    "Prof. Catalano - Prof. Gaglione",
-                                    R.drawable.cisco)
             ),
             new Aula("Aula 3.0", -1, new LatLng(45.616832, 9.384237),
                     new Attivita

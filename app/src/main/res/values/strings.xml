@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">Einstein Open Day</string>
     <string name="title_activity_maps">Map</string>
+
     <string name="menu_lista_attivita">Lista attività</string>
-    <string name="menu_info">Informazioni</string>
+
     <string name="menu_cat_info">Informatica</string>
     <string name="menu_cat_ele">Elettronica</string>
     <string name="menu_cat_bio">Biotecnologie</string>
     <string name="menu_cat_art">Artistico</string>
+
+    <string name="menu_info">Informazioni</string>
     <string name="piu_informazioni">Visualizza</string>
+    <string name="recensici">Recensici</string>
 </resources>

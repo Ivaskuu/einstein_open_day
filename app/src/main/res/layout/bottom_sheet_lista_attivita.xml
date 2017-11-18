@@ -6,23 +6,51 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.design.widget.BottomNavigationView
-        android:id="@+id/bottomNavigationBar"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        app:elevation="2dp"
-        android:elevation="2dp"
-        app:itemIconTint="#FFF"
-        app:itemTextColor="#FFF"
-        app:menu="@menu/menu_category" />
+        android:elevation="3dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/img_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_memory_24dp" />
+
+        <TextView
+            android:id="@+id/text_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/img_category"
+            android:layout_marginLeft="32dp"
+            android:layout_centerVertical="true"
+            android:text="@string/menu_cat_ele"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btn_close_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="#00000000"
+            android:src="@drawable/ic_close"/>
+    </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lista attivita"
+        android:text="@string/menu_lista_attivita"
         android:layout_marginTop="16dp"
-        android:layout_marginLeft="8dp" />
+        android:layout_marginLeft="16dp" />
 
     <com.skuu.einsteinopenday.BottomSheetListView
         android:id="@+id/listaAttivita"
