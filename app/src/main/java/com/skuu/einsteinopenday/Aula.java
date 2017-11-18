@@ -12,9 +12,9 @@ public class Aula
     public int aulaNum;
     public int category;
     public LatLng pos;
-    public Attivita[] attivita;
+    public Attivita attivita;
 
-    public Aula(int aulaNum, int category, LatLng pos, Attivita[] attivita)
+    public Aula(int aulaNum, int category, LatLng pos, Attivita attivita)
     {
         this.aulaNum = aulaNum;
         this.category = category;
@@ -22,10 +22,9 @@ public class Aula
         this.attivita = attivita;
     }
 
-    public Aula(String nomeAula, int aulaNum, int category, LatLng pos, Attivita[] attivita)
+    public Aula(String nomeAula, int category, LatLng pos, Attivita attivita)
     {
         this.nomeAula = nomeAula;
-        this.aulaNum = aulaNum;
         this.category = category;
         this.pos = pos;
         this.attivita = attivita;

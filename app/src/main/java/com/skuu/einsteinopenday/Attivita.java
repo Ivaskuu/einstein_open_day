@@ -7,13 +7,11 @@ package com.skuu.einsteinopenday;
 public class Attivita
 {
     public String nomeAtt;
-    public String desc;
-    public String orario;
+    public String prof;
 
-    public Attivita(String nomeAtt, String desc, String orario)
+    public Attivita(String nomeAtt, String prof)
     {
         this.nomeAtt = nomeAtt;
-        this.desc = desc;
-        this.orario = orario;
+        this.prof = prof;
     }
 }
