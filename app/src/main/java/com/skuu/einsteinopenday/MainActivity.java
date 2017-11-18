@@ -39,8 +39,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
     private ArrayList<MarkerOptions> markers = new ArrayList<>();
 
-    private int DEFAULT_SWIPE_MIN_DISTANCE = 120;
-    private int SWIPE_MIN_DISTANCE = 120;
+    private final int DEFAULT_SWIPE_MIN_DISTANCE = 120;
+    private int swipeMinDistance = 120;
+
+    private int currentCategory = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -143,6 +145,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     // Show only the markers that belongs with the given category
     private void showMarkers(int category)
     {
+        currentCategory = category;
+
         mMap.clear();
         for(int i = 0; i < ListaAule.adule.length; i++)
         {
@@ -165,7 +169,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         @Override
         public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
         {
-            if(e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE)
+            if(e1.getY() - e2.getY() > swipeMinDistance)
             {
                 showListaAttivita(null);
             }
@@ -176,21 +180,38 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public void showListaAttivita(View v)
     {
-        SWIPE_MIN_DISTANCE = 120000;
+        swipeMinDistance = 120000; // Prevent the infinite swipe bug
 
+        // Get all attivita
+        ArrayList<Attivita> listaAttivita = new ArrayList<>();
+        for(int i = 0; i < ListaAule.adule.length; i++)
+        {
+            if(ListaAule.adule[i].category == currentCategory || ListaAule.adule[i].category == -1) // TODO : Spostare l'attributo category da Aula a Attivita
+            {
+                listaAttivita.add(ListaAule.adule[i].attivita);
+            }
+        }
+
+        // Inflate the bottom sheet dialog
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         View dialogView = getLayoutInflater().inflate(R.layout.bottom_sheet_lista_attivita, null);
+
+        // Init the listaAttivita
+        BottomSheetListView listView = (BottomSheetListView)dialogView.findViewById(R.id.listaAttivita);
+        AdapterListaAttivita adapter = new AdapterListaAttivita(this, listaAttivita);
+        listView.setAdapter(adapter);
+
 
         dialog.setContentView(dialogView);
         dialog.show();
 
-        // Reset SWIPE_MIN_DISTANCE on dialog close
+        // Reset swipeMinDistance on dialog close
         dialog.setOnDismissListener(new DialogInterface.OnDismissListener()
         {
             @Override
             public void onDismiss(DialogInterface dialog)
             {
-                SWIPE_MIN_DISTANCE = DEFAULT_SWIPE_MIN_DISTANCE;
+                swipeMinDistance = DEFAULT_SWIPE_MIN_DISTANCE;
             }
         });
     }
