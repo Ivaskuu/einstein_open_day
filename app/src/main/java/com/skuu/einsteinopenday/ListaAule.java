@@ -21,12 +21,6 @@ public class ListaAule
                                     "Esperto: Paolo Sgroi",
                                     R.drawable.pittura)
             ),
-            new Aula(25, 3, new LatLng(45.616980, 9.384117),
-                    new Attivita
-                            ("Immagini e parole: lettura di un'opera d'arte", // TODO : Change category ?
-                                    "Prof. Tresoldi",
-                                    R.drawable.libri)
-            ),
             new Aula(12, 2, new LatLng(45.616940, 9.383257),
                     new Attivita
                             ("Presentazione Liceo Scienze applicate",
@@ -127,9 +121,15 @@ public class ListaAule
                                     "Prof. Russo",
                                     R.drawable.ufficio)
             ),
+            new Aula(25, -1, new LatLng(45.616980, 9.384117),
+                    new Attivita
+                            ("Immagini e parole: lettura di un'opera d'arte", // TODO : Change category ?
+                                    "Prof. Tresoldi",
+                                    R.drawable.libri)
+            ),
             new Aula("Aula 3.0", -1, new LatLng(45.616832, 9.384237),
                     new Attivita
-                            ("Laboratorio grafico-multimediale. Redazione aperta giornalino scolastico. I nostri video.",
+                            ("Lab. grafico-multimediale. Redazione giornalino scolastico. I nostri video.",
                                     "Prof. Imperatore - Esperto: Andrea Ligabo",
                                     R.drawable.giornalino)
             ),

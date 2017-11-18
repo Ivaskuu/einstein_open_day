@@ -42,12 +42,13 @@
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse pharetra nisl nunc, eget luctus lectus accumsan non."/>
 
         <Button
+            android:id="@+id/btn_chiudi_dialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/recensici"
+            android:text="@string/close"
             android:textColor="#1E88E5"
-            style="?android:attr/borderlessButtonStyle"
-            android:layout_gravity="right"/>
+            android:layout_gravity="right"
+            style="?android:attr/borderlessButtonStyle"/>
     </LinearLayout>
 </RelativeLayout>

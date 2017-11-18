@@ -3,6 +3,7 @@
     <string name="title_activity_maps">Map</string>
 
     <string name="menu_lista_attivita">Lista attività</string>
+    <string name="close">Chiudi</string>
 
     <string name="menu_cat_info">Informatica</string>
     <string name="menu_cat_ele">Elettronica</string>

@@ -19,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,14 +39,14 @@ import static com.skuu.einsteinopenday.R.id.map;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback
 {
+    public static ArrayList<MarkerOptions> markers = new ArrayList<>(); // TODO: Try to integrate it in the Aula class
     private GoogleMap mMap;
-    private ArrayList<MarkerOptions> markers = new ArrayList<>();
 
     private final int[] categoriesName = {R.string.menu_cat_info, R.string.menu_cat_ele, R.string.menu_cat_bio, R.string.menu_cat_art};
     private final int[] categoriesIcon = {R.drawable.ic_reorder_24dp, R.drawable.ic_memory_24dp, R.drawable.ic_flask_24dp, R.drawable.ic_brush_24dp};
 
-    private final int DEFAULT_SWIPE_MIN_DISTANCE = 120;
-    private int swipeMinDistance = 120;
+    private final int DEFAULT_SWIPE_MIN_DISTANCE = 100;
+    private int swipeMinDistance = 100;
 
     private int currentCategory = 0;
 
@@ -178,6 +179,46 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    private void onMarkerPress(Marker marker)
+    {
+        for(int i = 0; i < ListaAule.adule.length; i++)
+        {
+            if(ListaAule.adule[i].attivita.nomeAtt.equals(marker.getTitle()))
+            {
+                showLabDialog(i);
+                break;
+            }
+        }
+    }
+
+    public void showLabDialog(int pos)
+    {
+        final Dialog dialog = new Dialog(MainActivity.this); // Custom dialog
+        dialog.setContentView(R.layout.lab_dialog);
+
+        // Set the custom dialog components
+        TextView textAttivita = (TextView) dialog.findViewById(R.id.text_attivita);
+        TextView textProf = (TextView) dialog.findViewById(R.id.text_prof);
+        ImageView img = (ImageView) dialog.findViewById(R.id.img_lab);
+
+        textAttivita.setText(ListaAule.adule[pos].attivita.nomeAtt);
+        textProf.setText(ListaAule.adule[pos].attivita.prof);
+        img.setImageResource(ListaAule.adule[pos].attivita.imgRes);
+
+        // Close the dialog on button press
+        Button dialogButton = (Button) dialog.findViewById(R.id.btn_chiudi_dialog);
+        dialogButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
     // Inflate the toolbar menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -202,6 +243,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+    // Show the lista attivita bottom sheet dialog
     public void showListaAttivita(View v)
     {
         swipeMinDistance = 120000; // Prevent the infinite swipe bug
@@ -222,7 +264,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         // Init the listaAttivita
         BottomSheetListView listView = (BottomSheetListView)dialogView.findViewById(R.id.listaAttivita);
-        AdapterListaAttivita adapter = new AdapterListaAttivita(this, listaAttivita);
+        AdapterListaAttivita adapter = new AdapterListaAttivita(this, listaAttivita, dialog, mMap, this);
         listView.setAdapter(adapter);
 
         ImageView imgCat = (ImageView)dialogView.findViewById(R.id.img_category);
@@ -252,42 +294,5 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 swipeMinDistance = DEFAULT_SWIPE_MIN_DISTANCE;
             }
         });
-    }
-
-    private void onMarkerPress(Marker marker)
-    {
-        int pos = -1;
-
-        final Dialog dialog = new Dialog(MainActivity.this); // Custom dialog
-        dialog.setContentView(R.layout.lab_dialog);
-
-        for(int i = 0; i < ListaAule.adule.length; i++)
-        {
-            if(ListaAule.adule[i].attivita.nomeAtt.equals(marker.getTitle()))
-            {
-                pos = i;
-                break;
-            }
-        }
-
-        // Set the custom dialog components - text, image and button
-        TextView textAttivita = (TextView) dialog.findViewById(R.id.text_attivita);
-        TextView textProf = (TextView) dialog.findViewById(R.id.text_prof);
-        ImageView img = (ImageView) dialog.findViewById(R.id.img_lab);
-
-        textAttivita.setText(ListaAule.adule[pos].attivita.nomeAtt);
-        textProf.setText(ListaAule.adule[pos].attivita.prof);
-        img.setImageResource(ListaAule.adule[pos].attivita.imgRes);
-
-        /*Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
-        // if button is clicked, close the custom dialog
-        dialogButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });*/
-
-        dialog.show();
     }
 }

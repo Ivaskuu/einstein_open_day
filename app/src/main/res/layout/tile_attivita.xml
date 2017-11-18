@@ -47,13 +47,13 @@
                 android:text="Creazione di un'applicazione" />
 
             <Button
+                android:id="@+id/btn_visualizza_aula"
                 style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/piu_informazioni"
                 android:textColor="#1E88E5" />
-
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>
