@@ -129,7 +129,7 @@ public class ListaAule
             ),
             new Aula("Aula 3.0", -1, new LatLng(45.616832, 9.384237),
                     new Attivita
-                            ("Lab. grafico-multimediale. Redazione giornalino scolastico. I nostri video.",
+                            ("Lab. grafico-multimediale. Giornalino scolastico. I nostri video",
                                     "Prof. Imperatore - Esperto: Andrea Ligabo",
                                     R.drawable.giornalino)
             ),
