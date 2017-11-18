@@ -2,6 +2,7 @@ package com.skuu.einsteinopenday;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,7 +13,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 {
     private GoogleMap mMap;
     private ArrayList<MarkerOptions> markers = new ArrayList<>();
+
+    private int DEFAULT_SWIPE_MIN_DISTANCE = 120;
+    private int SWIPE_MIN_DISTANCE = 120;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -73,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         );
 
-        final GestureDetector gdt = new GestureDetector(new GestureListener());
+        final GestureDetector gdt = new GestureDetector(new BottomNavigationBarGestureListener());
         for(int i = 0; i < bottomNavigationView.getTouchables().size(); i++)
         {
             BottomNavigationItemView btn = (BottomNavigationItemView)bottomNavigationView.getTouchables().get(i);
@@ -86,24 +89,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     return false;
                 }
             });
-        }
-    }
-
-    private class GestureListener extends GestureDetector.SimpleOnGestureListener
-    {
-        private int SWIPE_MIN_DISTANCE = 120;
-        private int SWIPE_THRESHOLD_VELOCITY = 50;
-
-        @Override
-        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY)
-        {
-            if(e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY)
-            {
-                Log.d("Application", "Bottom to top");
-                showListaAttivita(null);
-            }
-
-            return false;
         }
     }
 
@@ -175,13 +160,39 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         return true;
     }
 
+    private class BottomNavigationBarGestureListener extends GestureDetector.SimpleOnGestureListener
+    {
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY)
+        {
+            if(e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE)
+            {
+                showListaAttivita(null);
+            }
+
+            return false;
+        }
+    }
+
     public void showListaAttivita(View v)
     {
+        SWIPE_MIN_DISTANCE = 120000;
+
         BottomSheetDialog dialog = new BottomSheetDialog(this);
         View dialogView = getLayoutInflater().inflate(R.layout.bottom_sheet_lista_attivita, null);
 
         dialog.setContentView(dialogView);
         dialog.show();
+
+        // Reset SWIPE_MIN_DISTANCE on dialog close
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener()
+        {
+            @Override
+            public void onDismiss(DialogInterface dialog)
+            {
+                SWIPE_MIN_DISTANCE = DEFAULT_SWIPE_MIN_DISTANCE;
+            }
+        });
     }
 
     private void onMarkerPress(Marker marker)
