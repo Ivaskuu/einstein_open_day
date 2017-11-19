@@ -3,6 +3,7 @@ package com.skuu.einsteinopenday;
 import android.Manifest;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +12,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.GestureDetector;
@@ -24,6 +26,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 {
     public static ArrayList<MarkerOptions> markers = new ArrayList<>(); // TODO: Try to integrate it in the Aula class
     private GoogleMap mMap;
+    private SharedPreferences prefs;
 
     private final int[] categoriesName = {R.string.menu_cat_info, R.string.menu_cat_ele, R.string.menu_cat_bio, R.string.menu_cat_art, R.string.menu_cat_sport};
     private final int[] categoriesIcon = {R.drawable.ic_reorder_24dp, R.drawable.ic_memory_24dp, R.drawable.ic_flask_24dp, R.drawable.ic_brush_24dp, R.drawable.ic_directions_run};
@@ -107,6 +112,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             });
         }
+
+        // Show the tutorial
+        prefs = getSharedPreferences(getResources().getString(R.string.app_name), MODE_PRIVATE);
+        if(!prefs.contains("tutorial")) showTutorial(0);
     }
 
     // Load the map
@@ -295,5 +304,122 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 swipeMinDistance = DEFAULT_SWIPE_MIN_DISTANCE;
             }
         });
+    }
+
+    private void showTutorial(final int step)
+    {
+        View view;
+        String title, desc;
+        int radius;
+
+        switch (step)
+        {
+            case 0:
+                view = findViewById(R.id.map);
+                title = "Questa è la mappa della scuola";
+                desc = "La puoi muovere e zoomare per orientarti e vedere dove andare";
+                radius = 180;
+                break;
+            case 1:
+                view = findViewById(R.id.bottomNavigationBar);
+                title = "Questa è la barra degli indirizzi";
+                desc = "La puoi muovere e zoomare per orientarti e vedere dove andare";
+                radius = 140;
+                break;
+            case 2:
+                view = findViewById(R.id.bottomNavigationBar).getTouchables().get(1);
+                title = "Clicca qui per cambiare l'indirizzo";
+                desc = "";
+                radius = 50;
+                break;
+            case 3:
+                ((BottomNavigationView) findViewById(R.id.bottomNavigationBar)).setSelectedItemId(R.id.action_ele);
+
+                view = findViewById(R.id.map);
+                title = "Come hai potuto vedere, i marker hanno cambiato posizione";
+                desc = "Per ogni indirizzo troverai delle attività diverse dove partecipare";
+                radius = 160;
+                break;
+            case 4:
+                for (int i = 0; i < ListaAule.adule.length; i++)
+                {
+                    if(ListaAule.adule[i].category == 1)
+                    {
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(markers.get(i).getPosition(), 19), 500, new GoogleMap.CancelableCallback()
+                        {
+                            @Override public void onFinish() {}
+                            @Override public void onCancel() {}
+                        });
+                        break;
+                    }
+                }
+
+                view = findViewById(R.id.map);
+                title = "Clicca su questo marker per vedere più informazioni";
+                desc = "Per ogni indirizzo troverai delle attività diverse dove partecipare";
+                radius = 50;
+                break;
+            case 5:
+                for (int i = 0; i < ListaAule.adule.length; i++)
+                {
+                    if(ListaAule.adule[i].category == 1)
+                    {
+                        showLabDialog(i);
+                        break;
+                    }
+                }
+                mMap.animateCamera(CameraUpdateFactory.zoomTo(0));
+
+                view = findViewById(R.id.map);
+                title = "Cliccare sui marker non è l'unico metodo per vedere le attività";
+                desc = "";
+                radius = 180;
+                break;
+            case 6:
+                view = findViewById(R.id.bottomNavigationBar).getTouchables().get(1);
+                title = "Clicca un'altra volta sull'indirizzo elettronica per far apparire la lista delle attivita (funziona con tutti gli altri indirizzi)";
+                desc = "Puoi anche tirare verso l'alto con il dito";
+                radius = 60;
+                break;
+            case 7:
+                showListaAttivita(null);
+
+                AlertDialog.Builder builder;
+                builder = new AlertDialog.Builder(this);
+
+                builder.setTitle("Complimenti")
+                        .setMessage("Abbiamo fatto il giro dell'applicazione, e addesso sei pronto ad usarla da solo !")
+                        .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {public void onClick(DialogInterface dialog, int which) {}})
+                        .show();
+
+                prefs.edit().putBoolean("tutorial", true).commit();
+                return;
+            default:
+                return;
+        }
+
+        TapTargetView.showFor(
+                this,
+                TapTarget.forView
+                        (view, title, desc)
+                        .outerCircleColor(R.color.colorPrimary)      // Specify a color for the outer circle
+                        .outerCircleAlpha(0.75f)            // Specify the alpha amount for the outer circle
+                        .targetCircleColor(R.color.transparent)   // Specify a color for the target circle
+                        .titleTextColor(R.color.white)      // Specify the color of the title text
+                        .dimColor(R.color.black)            // If set, will dim behind the view with 30% opacity of the given color
+                        .drawShadow(true)                   // Whether to draw a drop shadow or not
+                        .cancelable(false)                  // Whether tapping outside the outer circle dismisses the view
+                        .tintTarget(true)                   // Whether to tint the target view's color
+                        .transparentTarget(true)           // Specify whether the target is transparent (displays the content underneath)
+                        .targetRadius(radius),                  // Specify the target radius (in dp)
+                new TapTargetView.Listener()
+                {          // The listener can listen for regular clicks, long clicks or cancels
+                    @Override
+                    public void onTargetClick(TapTargetView view)
+                    {
+                        super.onTargetClick(view);      // This call is optional
+                        showTutorial(step + 1);
+                    }
+                });
     }
 }
