@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public static ArrayList<MarkerOptions> markers = new ArrayList<>(); // TODO: Try to integrate it in the Aula class
     private GoogleMap mMap;
 
-    private final int[] categoriesName = {R.string.menu_cat_info, R.string.menu_cat_ele, R.string.menu_cat_bio, R.string.menu_cat_art};
-    private final int[] categoriesIcon = {R.drawable.ic_reorder_24dp, R.drawable.ic_memory_24dp, R.drawable.ic_flask_24dp, R.drawable.ic_brush_24dp};
+    private final int[] categoriesName = {R.string.menu_cat_info, R.string.menu_cat_ele, R.string.menu_cat_bio, R.string.menu_cat_art, R.string.menu_cat_sport};
+    private final int[] categoriesIcon = {R.drawable.ic_reorder_24dp, R.drawable.ic_memory_24dp, R.drawable.ic_flask_24dp, R.drawable.ic_brush_24dp, R.drawable.ic_directions_run};
 
     private final int DEFAULT_SWIPE_MIN_DISTANCE = 100;
     private int swipeMinDistance = 100;
@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     if(item.getItemId() == R.id.action_ele) category = 1;
                     else if(item.getItemId() == R.id.action_bio) category = 2;
                     else if(item.getItemId() == R.id.action_art) category = 3;
+                    else if(item.getItemId() == R.id.action_sport) category = 4;
 
                     showMarkers(category);
                     return true;

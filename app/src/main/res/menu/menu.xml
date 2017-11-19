@@ -7,6 +7,6 @@
         android:id="@+id/btnLista"
         android:title="@string/menu_lista_attivita"
         android:icon="@drawable/ic_format_list_bulleted"
-        app:showAsAction="always" />
+        app:showAsAction="never" />
 
 </menu>
