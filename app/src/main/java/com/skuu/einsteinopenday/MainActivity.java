@@ -56,8 +56,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private int currentCategory = 0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -65,48 +64,41 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(map);
         mapFragment.getMapAsync(this);
 
-        Toolbar toolbar = (Toolbar)this.findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) this.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        BottomNavigationView bottomNavigationView = (BottomNavigationView)this.findViewById(R.id.bottomNavigationBar);
+        BottomNavigationView bottomNavigationView = (BottomNavigationView) this.findViewById(R.id.bottomNavigationBar);
         bottomNavigationView.setOnNavigationItemSelectedListener // On bottom navigation view click
-        (
-            new BottomNavigationView.OnNavigationItemSelectedListener()
-            {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item)
-                {
-                    int category = 0;
+                (
+                        new BottomNavigationView.OnNavigationItemSelectedListener() {
+                            @Override
+                            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                                int category = 0;
 
-                    if(item.getItemId() == R.id.action_ele) category = 1;
-                    else if(item.getItemId() == R.id.action_bio) category = 2;
-                    else if(item.getItemId() == R.id.action_art) category = 3;
-                    else if(item.getItemId() == R.id.action_sport) category = 4;
+                                if (item.getItemId() == R.id.action_ele) category = 1;
+                                else if (item.getItemId() == R.id.action_bio) category = 2;
+                                else if (item.getItemId() == R.id.action_art) category = 3;
+                                else if (item.getItemId() == R.id.action_sport) category = 4;
 
-                    showMarkers(category);
-                    return true;
-                }
-            }
-        );
-        bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener()
-        {
+                                showMarkers(category);
+                                return true;
+                            }
+                        }
+                );
+        bottomNavigationView.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
             @Override
-            public void onNavigationItemReselected(@NonNull MenuItem item)
-            {
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
                 showListaAttivita(null);
             }
         });
 
         final GestureDetector gdt = new GestureDetector(new BottomNavigationBarGestureListener());
-        for(int i = 0; i < bottomNavigationView.getTouchables().size(); i++)
-        {
-            BottomNavigationItemView btn = (BottomNavigationItemView)bottomNavigationView.getTouchables().get(i);
-            btn.setOnTouchListener(new View.OnTouchListener()
-            {
+        for (int i = 0; i < bottomNavigationView.getTouchables().size(); i++) {
+            BottomNavigationItemView btn = (BottomNavigationItemView) bottomNavigationView.getTouchables().get(i);
+            btn.setOnTouchListener(new View.OnTouchListener() {
                 @Override
-                public boolean onTouch(View v, MotionEvent event)
-                {
+                public boolean onTouch(View v, MotionEvent event) {
                     gdt.onTouchEvent(event);
                     return false;
                 }
@@ -115,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         // Show the tutorial
         prefs = getSharedPreferences(getResources().getString(R.string.app_name), MODE_PRIVATE);
-        if(!prefs.contains("tutorial")) showTutorial(0);
+        if (!prefs.contains("tutorial")) showTutorial(0);
     }
 
     // Load the map
@@ -137,11 +129,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setLatLngBoundsForCameraTarget(superficieScuola);
 
         // Enable my location
-        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
         }
-        mMap.setMyLocationEnabled(true);
+        else
+        {
+            mMap.setMyLocationEnabled(true);
+        }
 
         initMarkers();
         showMarkers(0);
@@ -166,6 +161,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 onMarkerPress(arg0);
             }
         });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        {
+            mMap.setMyLocationEnabled(true);
+        }
     }
 
     // Create markers based on the listaAule at the same index position
