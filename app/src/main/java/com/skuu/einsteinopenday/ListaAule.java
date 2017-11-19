@@ -25,19 +25,14 @@ public class ListaAule
                     new Attivita
                             ("Presentazione Liceo Scienze applicate",
                                     "Prof. Silva Marina",
-                                    R.drawable.microscopio)
+                                    R.drawable.galassia)
             ),
             new Aula(2, 2, new LatLng(45.616730, 9.383149),
                     new Attivita
                             ("Presentazione Indirizzo Biologico-Sanitario",
                                     "Prof. Erba",
-                                    R.drawable.microscopio)
+                                    R.drawable.farmaci)
             ),
-            /*new Aula("Lab. Chimica Fisica", 2, new LatLng(45.616727, 9.383946), // TODO
-                    new Attivita
-                            ("Dalle reazioni alla corrente elettrica",
-                                    "Prof. Siragusa - Prof. Gazzaneo")
-            ),*/
             new Aula("Lab. di Chimica", 2, new LatLng(45.616778, 9.382995),
                     new Attivita
                             ("Dai colori alla chimica in cucina",
@@ -50,11 +45,18 @@ public class ListaAule
                                     "Prof. Breglia",
                                     R.drawable.profumo)
             ),
-            /*new Aula("Lab. di Microbiologia", 2, new LatLng(45.616727, 9.383946), // TODO
+            new Aula("Lab. Chimica Fisica", 2, new LatLng(45.616143, 9.384155),
+                    new Attivita
+                            ("Dalle reazioni alla corrente elettrica",
+                                    "Prof. Siragusa - Prof. Gazzaneo",
+                                    R.drawable.corrente)
+            ),
+            new Aula("Lab. di Microbiologia", 2, new LatLng(45.616100, 9.384023),
                     new Attivita
                             ("Tutti i segreti del microscopio",
-                                    "Prof. Palermo")
-            ),*/
+                                    "Prof. Palermo",
+                                    R.drawable.microscopio)
+            ),
             new Aula("Lab. Disegno 1", 3, new LatLng(45.616999, 9.383804),
                     new Attivita
                             ("Dall’idea all’oggetto",
@@ -95,7 +97,7 @@ public class ListaAule
                     new Attivita
                             ("La biologia intorno a noi",
                                     "Prof. Trifiletti",
-                                    R.drawable.microscopio)
+                                    R.drawable.dna)
             ),
             new Aula("Lab. Informatica", 0, new LatLng(45.616194, 9.384556),
                     new Attivita
