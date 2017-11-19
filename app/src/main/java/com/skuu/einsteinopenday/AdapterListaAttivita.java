@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.util.ArrayList;
 
@@ -27,6 +29,7 @@ public class AdapterListaAttivita extends ArrayAdapter<Attivita>
     private BottomSheetDialog dialog;
     private GoogleMap mMap;
     private MainActivity mainActivity;
+    private ImageLoader imageloader;
 
     public AdapterListaAttivita(@NonNull Context context, ArrayList<Attivita> attivita, BottomSheetDialog dialog, GoogleMap mMap, MainActivity mainActivity)
     {
@@ -35,14 +38,20 @@ public class AdapterListaAttivita extends ArrayAdapter<Attivita>
         this.dialog = dialog; // To close the dialog on button click
         this.mMap = mMap; // To animate the camera to the marker position
         this.mainActivity = mainActivity; // To show the lab dialog
+
+        imageloader = ImageLoader.getInstance();
+        imageloader.init(ImageLoaderConfiguration.createDefault(context));
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent)
     {
-        LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-        if(convertView == null) convertView = layoutInflater.inflate(R.layout.tile_attivita, parent, false);
+        if(convertView == null)
+        {
+            LayoutInflater layoutInflater = LayoutInflater.from(getContext());
+            convertView = layoutInflater.inflate(R.layout.tile_attivita, parent, false);
+        }
 
         final Attivita attivita = getItem(position);
         ImageView img = (ImageView)convertView.findViewById(R.id.img_attivita_tile);
@@ -51,7 +60,9 @@ public class AdapterListaAttivita extends ArrayAdapter<Attivita>
 
         textTitolo.setText(attivita.nomeAtt);
         //textDesc.setText(attivita.desc);
-        img.setImageResource(attivita.imgRes);
+        imageloader.displayImage("drawable://" + attivita.imgRes, img);
+
+        //img.setImageResource(attivita.imgRes);
 
         Button btnVisualizza = (Button)convertView.findViewById(R.id.btn_visualizza_aula);
         btnVisualizza.setOnClickListener(new View.OnClickListener() {

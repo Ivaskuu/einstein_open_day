@@ -123,7 +123,7 @@ public class ListaAule
             ),
             new Aula(25, -1, new LatLng(45.616980, 9.384117),
                     new Attivita
-                            ("Immagini e parole: lettura di un'opera d'arte", // TODO : Change category ?
+                            ("Immagini e parole: lettura di un'opera d'arte",
                                     "Prof. Tresoldi",
                                     R.drawable.libri)
             ),
