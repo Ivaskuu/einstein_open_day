@@ -18,7 +18,7 @@ public class BottomSheetListView extends ListView {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        View view = (View) getChildAt(getChildCount() - 1);
+        View view = getChildAt(getChildCount() - 1);
 
         int diffBottom = (view.getBottom() - (getHeight() + getScrollY()));
         if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
