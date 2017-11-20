@@ -31,7 +31,7 @@
                 android:id="@+id/text_titolo_attivita"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Creazione di una app"
+                android:text="Nome dell'attività"
                 android:maxLines="2"
                 android:ellipsize="end"
                 android:textColor="#000"
@@ -44,7 +44,7 @@
                 android:maxLines="2"
                 android:ellipsize="end"
                 android:layout_marginTop="4dp"
-                android:text="Creazione di un'applicazione" />
+                android:text="Descrizione dell'attività o del laboratorio" />
 
             <Button
                 android:id="@+id/btn_visualizza_aula"
