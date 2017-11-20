@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="32dp"
+    android:orientation="vertical"
+    tools:context="com.skuu.einsteinopenday.PermissionActivity">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_place"
+        android:tint="@color/colorPrimary"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Vuoi attivare la localizazzione ?"
+        android:textColor="#000"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="Attivando la localizzazione potrai vedere la tua posizione sulla mappa."
+        android:textAlignment="center" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Attiva la localizzazione"
+        android:backgroundTint="@color/colorPrimary"
+        android:onClick="attivaLocalizazzione"
+        android:textColor="#fff"/>
+
+    <Button
+        android:id="@+id/btn_chiudi_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Non attivare la localizzazione"
+        android:onClick="nonAttivaLocalizzazione"
+        style="?android:attr/borderlessButtonStyle"/>
+
+</LinearLayout>

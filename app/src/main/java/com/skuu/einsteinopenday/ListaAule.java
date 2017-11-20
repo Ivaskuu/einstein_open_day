@@ -111,6 +111,12 @@ public class ListaAule
                                     "Prof. Catalano - Prof. Gaglione",
                                     R.drawable.cisco)
             ),
+            new Aula(25, 3, new LatLng(45.616980, 9.384117),
+                    new Attivita
+                            ("Immagini e parole: lettura di un'opera d'arte",
+                                    "Prof. Tresoldi",
+                                    R.drawable.libri)
+            ),
             new Aula(20, -1, new LatLng(45.617072, 9.383625),
                     new Attivita
                             ("Le certificazioni linguistiche… una finestra sul mondo!",
@@ -123,16 +129,11 @@ public class ListaAule
                                     "Prof. Russo",
                                     R.drawable.ufficio)
             ),
-            new Aula(25, -1, new LatLng(45.616980, 9.384117),
-                    new Attivita
-                            ("Immagini e parole: lettura di un'opera d'arte",
-                                    "Prof. Tresoldi",
-                                    R.drawable.libri)
-            ),
             new Aula("Aula 3.0", -1, new LatLng(45.616832, 9.384237),
                     new Attivita
                             ("Lab. grafico-multimediale. Giornalino scolastico. I nostri video",
                                     "Prof. Imperatore - Esperto: Andrea Ligabo",
+                                    "Nella cornice dell'innovativa aula 3.0, la redazione di Click!, giornalino d'istituto, scrive e impagina articoli, presentando un'antologia di video prodotti dagli studenti dell'Einstein. Contemporaneamente, gli studenti dell'Artistico svolgono un laboratorio di elaborazione grafia delle immagini.",
                                     R.drawable.giornalino)
             ),
             new Aula(27, -1, new LatLng(45.616927, 9.384167),

@@ -1,8 +1,8 @@
 package com.skuu.einsteinopenday;
 
-import android.Manifest;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -10,7 +10,6 @@ import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -48,15 +47,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private SharedPreferences prefs;
 
     private final int[] categoriesName = {R.string.menu_cat_info, R.string.menu_cat_ele, R.string.menu_cat_bio, R.string.menu_cat_art, R.string.menu_cat_sport};
-    private final int[] categoriesIcon = {R.drawable.ic_reorder_24dp, R.drawable.ic_memory_24dp, R.drawable.ic_flask_24dp, R.drawable.ic_brush_24dp, R.drawable.ic_directions_run};
+    private final int[] categoriesIcon = {R.drawable.ic_computer, R.drawable.ic_memory_24dp, R.drawable.ic_flask_24dp, R.drawable.ic_brush_24dp, R.drawable.ic_directions_run};
 
     private final int DEFAULT_SWIPE_MIN_DISTANCE = 100;
+    private final int PERM_ACTIVITY_REQ_CODE = 1111;
     private int swipeMinDistance = 100;
 
     private int currentCategory = 0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -94,7 +95,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
 
         final GestureDetector gdt = new GestureDetector(new BottomNavigationBarGestureListener());
-        for (int i = 0; i < bottomNavigationView.getTouchables().size(); i++) {
+        for (int i = 0; i < bottomNavigationView.getTouchables().size(); i++)
+        {
             BottomNavigationItemView btn = (BottomNavigationItemView) bottomNavigationView.getTouchables().get(i);
             btn.setOnTouchListener(new View.OnTouchListener() {
                 @Override
@@ -105,8 +107,17 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             });
         }
 
-        // Show the tutorial
+        // Init the prefs
         prefs = getSharedPreferences(getResources().getString(R.string.app_name), MODE_PRIVATE);
+
+        // Ask for location if not already asked
+        if(!prefs.contains(getString(R.string.prefs_localizzazione)))
+        {
+            Intent permActIntent = new Intent(MainActivity.this, PermissionActivity.class);
+            startActivityForResult(permActIntent, PERM_ACTIVITY_REQ_CODE);
+        }
+
+        // Show the tutorial
         if (!prefs.contains("tutorial")) showTutorial(0);
     }
 
@@ -129,11 +140,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setLatLngBoundsForCameraTarget(superficieScuola);
 
         // Enable my location
-        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-        {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-        }
-        else
+        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
         {
             mMap.setMyLocationEnabled(true);
         }
@@ -161,17 +168,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 onMarkerPress(arg0);
             }
         });
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
-    {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-        {
-            mMap.setMyLocationEnabled(true);
-        }
     }
 
     // Create markers based on the listaAule at the same index position
@@ -215,11 +211,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Set the custom dialog components
         TextView textAttivita = (TextView) dialog.findViewById(R.id.text_attivita);
         TextView textProf = (TextView) dialog.findViewById(R.id.text_prof);
+        TextView textDesc = (TextView) dialog.findViewById(R.id.text_desc);
         TextView textAula = (TextView) dialog.findViewById(R.id.text_aula);
         ImageView img = (ImageView) dialog.findViewById(R.id.img_lab);
 
         textAttivita.setText(ListaAule.adule[pos].attivita.nomeAtt);
         textProf.setText(ListaAule.adule[pos].attivita.prof);
+        if(ListaAule.adule[pos].attivita.desc != null) textDesc.setText(ListaAule.adule[pos].attivita.desc);
         textAula.setText(ListaAule.adule[pos].nomeAula == null ? "Aula " + ListaAule.adule[pos].aulaNum : ListaAule.adule[pos].nomeAula);
         img.setImageResource(ListaAule.adule[pos].attivita.imgRes);
 
@@ -429,5 +427,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         showTutorial(step + 1);
                     }
                 });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == PERM_ACTIVITY_REQ_CODE)
+        {
+            onMapReady(mMap);
+        }
     }
 }
