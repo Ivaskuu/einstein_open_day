@@ -322,19 +322,19 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         {
             case 0:
                 view = findViewById(R.id.map);
-                title = "Questa è la mappa della scuola";
-                desc = "La puoi muovere e zoomare per orientarti e vedere dove andare";
+                title = "Questa è la mappa della scuola.";
+                desc = "Puoi muoverti e ingrandirla per orientarti e visualizzare tutte le attività.";
                 radius = 180;
                 break;
             case 1:
                 view = findViewById(R.id.bottomNavigationBar);
-                title = "Questa è la barra degli indirizzi";
-                desc = "La puoi muovere e zoomare per orientarti e vedere dove andare";
+                title = "Questa è la barra dei vari indirizzi";
+                desc = "Seleziona un indirizzo per scoprire tutte le sue relative attività";
                 radius = 140;
                 break;
             case 2:
                 view = findViewById(R.id.bottomNavigationBar).getTouchables().get(1);
-                title = "Clicca qui per cambiare l'indirizzo";
+                title = "Clicca qui per cambiare indirizzo.";
                 desc = "";
                 radius = 50;
                 break;
@@ -342,8 +342,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 ((BottomNavigationView) findViewById(R.id.bottomNavigationBar)).setSelectedItemId(R.id.action_ele);
 
                 view = findViewById(R.id.map);
-                title = "Come hai potuto vedere, i marker hanno cambiato posizione";
-                desc = "Per ogni indirizzo troverai delle attività diverse dove partecipare";
+                title = "Come puoi vedere, i segnalini hanno cambiato posizione.";
+                desc = "Per ogni indirizzo troverai delle attività diverse alle quali potrai partecipare.";
                 radius = 160;
                 break;
             case 4:
@@ -361,8 +361,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
 
                 view = findViewById(R.id.map);
-                title = "Clicca su questo marker per vedere più informazioni";
-                desc = "Per ogni indirizzo troverai delle attività diverse dove partecipare";
+                title = "Clicca su questo segnalino per avere più informazioni.";
+                //Qua c'è una ripetizione (riga 346). Si l'ho cambiata perciò non è uguale ma il significato è lo stesso
+             //   desc = "Per ogni indirizzo troverai delle attività diverse dove partecipare.";
                 radius = 50;
                 break;
             case 5:
@@ -377,14 +378,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 mMap.animateCamera(CameraUpdateFactory.zoomTo(0));
 
                 view = findViewById(R.id.map);
-                title = "Cliccare sui marker non è l'unico metodo per vedere le attività";
+                title = "Cliccare sui segnalini non è l'unico modo per visualizzare tutte le attività.";
                 desc = "";
                 radius = 180;
                 break;
             case 6:
                 view = findViewById(R.id.bottomNavigationBar).getTouchables().get(1);
-                title = "Clicca un'altra volta sull'indirizzo elettronica per far apparire la lista delle attivita (funziona con tutti gli altri indirizzi)";
-                desc = "Puoi anche tirare verso l'alto con il dito";
+                title = "Clicca un'altra volta sull'indirizzo elettronica per far apparire la lista delle attività (funziona con tutti gli altri indirizzi).";
+                desc = "Puoi anche tirare verso l'alto con il dito.";
                 radius = 60;
                 break;
             case 7:
@@ -394,7 +395,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 builder = new AlertDialog.Builder(this);
 
                 builder.setTitle("Complimenti")
-                        .setMessage("Abbiamo fatto il giro dell'applicazione, e addesso sei pronto ad usarla da solo !")
+                        .setMessage("Abbiamo finito il tutorial, addesso sei pronto ad usarla da solo!")
                         .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {public void onClick(DialogInterface dialog, int which) {}})
                         .show();
 
