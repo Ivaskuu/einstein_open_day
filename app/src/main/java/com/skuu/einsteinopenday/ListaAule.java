@@ -79,7 +79,7 @@ public class ListaAule
                     new Attivita
                             ("Progettazione di apparecchiature elettroniche",
                                     "Prof. Nava",
-                                    R.drawable.chip)
+                                    R.drawable.progettazione_chip)
             ),
             new Aula("Lab. Elettronica", 1, new LatLng(45.615927, 9.383650),
                     new Attivita

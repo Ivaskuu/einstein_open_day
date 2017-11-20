@@ -215,10 +215,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         // Set the custom dialog components
         TextView textAttivita = (TextView) dialog.findViewById(R.id.text_attivita);
         TextView textProf = (TextView) dialog.findViewById(R.id.text_prof);
+        TextView textAula = (TextView) dialog.findViewById(R.id.text_aula);
         ImageView img = (ImageView) dialog.findViewById(R.id.img_lab);
 
         textAttivita.setText(ListaAule.adule[pos].attivita.nomeAtt);
         textProf.setText(ListaAule.adule[pos].attivita.prof);
+        textAula.setText(ListaAule.adule[pos].nomeAula == null ? "Aula " + ListaAule.adule[pos].aulaNum : ListaAule.adule[pos].nomeAula);
         img.setImageResource(ListaAule.adule[pos].attivita.imgRes);
 
         // Close the dialog on button press
@@ -324,7 +326,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 view = findViewById(R.id.map);
                 title = "Questa è la mappa della scuola.";
                 desc = "Puoi muoverti e ingrandirla per orientarti e visualizzare tutte le attività.";
-                radius = 180;
+                radius = 165;
                 break;
             case 1:
                 view = findViewById(R.id.bottomNavigationBar);
@@ -336,7 +338,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 view = findViewById(R.id.bottomNavigationBar).getTouchables().get(1);
                 title = "Clicca qui per cambiare indirizzo.";
                 desc = "";
-                radius = 50;
+                radius = 45;
                 break;
             case 3:
                 ((BottomNavigationView) findViewById(R.id.bottomNavigationBar)).setSelectedItemId(R.id.action_ele);
@@ -362,9 +364,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 view = findViewById(R.id.map);
                 title = "Clicca su questo segnalino per avere più informazioni.";
-                //Qua c'è una ripetizione (riga 346). Si l'ho cambiata perciò non è uguale ma il significato è lo stesso
-             //   desc = "Per ogni indirizzo troverai delle attività diverse dove partecipare.";
-                radius = 50;
+                desc = "";
+                radius = 45;
                 break;
             case 5:
                 for (int i = 0; i < ListaAule.adule.length; i++)
