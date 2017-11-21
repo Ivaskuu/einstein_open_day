@@ -62,8 +62,9 @@ public class AdapterListaAttivita extends ArrayAdapter<Attivita>
         TextView textDesc = (TextView)convertView.findViewById(R.id.text_desc_attivita);
 
         textTitolo.setText(attivita.nomeAtt);
-        if(attivita.desc != null) textDesc.setText(attivita.desc);
         imageloader.displayImage("drawable://" + attivita.imgRes, img);
+        if(attivita.desc != null) textDesc.setText(attivita.desc);
+        else textDesc.setText(attivita.nomeAtt + ".");
 
         Button btnVisualizza = (Button)convertView.findViewById(R.id.btn_visualizza_aula);
         btnVisualizza.setOnClickListener(new View.OnClickListener() {

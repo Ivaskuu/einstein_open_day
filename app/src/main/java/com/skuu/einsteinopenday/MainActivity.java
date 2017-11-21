@@ -219,6 +219,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         textAttivita.setText(ListaAule.adule[pos].attivita.nomeAtt);
         textProf.setText(ListaAule.adule[pos].attivita.prof);
         if(ListaAule.adule[pos].attivita.desc != null) textDesc.setText(ListaAule.adule[pos].attivita.desc);
+        else textDesc.setText(ListaAule.adule[pos].attivita.nomeAtt + ".");
         textAula.setText(ListaAule.adule[pos].nomeAula == null ? "Aula " + ListaAule.adule[pos].aulaNum : ListaAule.adule[pos].nomeAula);
         img.setImageResource(ListaAule.adule[pos].attivita.imgRes);
 
@@ -229,8 +230,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View v)
             {
-                if(reopenList) showListaAttivita(listState);
                 dialog.dismiss();
+            }
+        });
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                if(reopenList) showListaAttivita(listState);
             }
         });
 
