@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.widget.BottomNavigationView;
@@ -197,13 +198,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         {
             if(ListaAule.adule[i].attivita.nomeAtt.equals(marker.getTitle()))
             {
-                showLabDialog(i);
+                showLabDialog(i, false, null);
                 break;
             }
         }
     }
 
-    public void showLabDialog(int pos)
+    public void showLabDialog(int pos, final boolean reopenList, final Parcelable listState)
     {
         final Dialog dialog = new Dialog(MainActivity.this); // Custom dialog
         dialog.setContentView(R.layout.lab_dialog);
@@ -228,6 +229,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onClick(View v)
             {
+                if(reopenList) showListaAttivita(listState);
                 dialog.dismiss();
             }
         });
@@ -245,6 +247,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         return true;
     }
 
+    // On bottom nav bar swipe up
     private class BottomNavigationBarGestureListener extends GestureDetector.SimpleOnGestureListener
     {
         @Override
@@ -260,7 +263,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     // Show the lista attivita bottom sheet dialog
-    public void showListaAttivita(View v)
+    public void showListaAttivita(Parcelable state)
     {
         swipeMinDistance = 120000; // Prevent the infinite swipe bug
 
@@ -280,9 +283,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         // Init the listaAttivita
         BottomSheetListView listView = (BottomSheetListView)dialogView.findViewById(R.id.listaAttivita);
-        AdapterListaAttivita adapter = new AdapterListaAttivita(this, listaAttivita, dialog, mMap, this);
+        AdapterListaAttivita adapter = new AdapterListaAttivita(this, listaAttivita, dialog, mMap, this, listView);
         listView.setAdapter(adapter);
+        if(state != null) listView.onRestoreInstanceState(state); // Restore the scroll position
 
+        // Set the top bar icon and text
         ImageView imgCat = (ImageView)dialogView.findViewById(R.id.img_category);
         TextView textCat = (TextView)dialogView.findViewById(R.id.text_category);
         ImageButton btnClose = (ImageButton)dialogView.findViewById(R.id.btn_close_dialog);
@@ -370,7 +375,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 {
                     if(ListaAule.adule[i].category == 1)
                     {
-                        showLabDialog(i);
+                        showLabDialog(i, false, null);
                         break;
                     }
                 }

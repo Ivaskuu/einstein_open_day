@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -26,18 +27,20 @@ import java.util.ArrayList;
 
 public class AdapterListaAttivita extends ArrayAdapter<Attivita>
 {
-    private BottomSheetDialog dialog;
-    private GoogleMap mMap;
-    private MainActivity mainActivity;
-    private ImageLoader imageloader;
+    private BottomSheetDialog dialog; // To close the dialog on button click
+    private GoogleMap mMap; // To animate the camera to the marker position
+    private MainActivity mainActivity; // To show the lab dialog
+    private ImageLoader imageloader; // To chache the images and speed up the scroll
+    private ListView listView; // To return to the same scroll position on lab_dialog close (if clicked on the visualizza button)
 
-    public AdapterListaAttivita(@NonNull Context context, ArrayList<Attivita> attivita, BottomSheetDialog dialog, GoogleMap mMap, MainActivity mainActivity)
+    public AdapterListaAttivita(@NonNull Context context, ArrayList<Attivita> attivita, BottomSheetDialog dialog, GoogleMap mMap, MainActivity mainActivity, ListView listView)
     {
         super(context, R.layout.tile_attivita, attivita);
 
-        this.dialog = dialog; // To close the dialog on button click
-        this.mMap = mMap; // To animate the camera to the marker position
-        this.mainActivity = mainActivity; // To show the lab dialog
+        this.dialog = dialog;
+        this.mMap = mMap;
+        this.mainActivity = mainActivity;
+        this.listView = listView;
 
         imageloader = ImageLoader.getInstance();
         imageloader.init(ImageLoaderConfiguration.createDefault(context));
@@ -59,10 +62,8 @@ public class AdapterListaAttivita extends ArrayAdapter<Attivita>
         TextView textDesc = (TextView)convertView.findViewById(R.id.text_desc_attivita);
 
         textTitolo.setText(attivita.nomeAtt);
-        //textDesc.setText(attivita.desc);
+        if(attivita.desc != null) textDesc.setText(attivita.desc);
         imageloader.displayImage("drawable://" + attivita.imgRes, img);
-
-        //img.setImageResource(attivita.imgRes);
 
         Button btnVisualizza = (Button)convertView.findViewById(R.id.btn_visualizza_aula);
         btnVisualizza.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +90,7 @@ public class AdapterListaAttivita extends ArrayAdapter<Attivita>
                     @Override
                     public void onFinish()
                     {
-                        mainActivity.showLabDialog(arrayPos);
+                        mainActivity.showLabDialog(arrayPos, true, listView.onSaveInstanceState());
                     }
 
                     @Override public void onCancel() {}
