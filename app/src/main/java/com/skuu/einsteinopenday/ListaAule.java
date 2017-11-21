@@ -11,36 +11,37 @@ public class ListaAule
     {
             new Aula("Lab Disegno 2", 3, new LatLng(45.616727, 9.383946),
                     new Attivita
-                                    ("Laboratorio di manipolazione argilla",
-                                            "Esperto: Annapina",
-                                            "In questo laboratorio potrai conoscerne le tecniche di modellizzazione  dell’argilla e di realizzazione di oggetti.",
-                                            R.drawable.manipolazione_argilla)
+                            ("Laboratorio di manipolazione argilla",
+                                    "Esperto: Annapina",
+                                    "Un laboratorio per sperimentare le tecniche di modellizzazione dell’argilla, manipolandola e plasmando forme artistiche.",
+                                    R.drawable.manipolazione_argilla)
                     ),
             new Aula(28, 3, new LatLng(45.616777, 9.384078),
                     new Attivita
                             ("Salone di Pittura – Stampatore",
                                     "Esperto: Paolo Sgroi",
-                                    "In quest’aula il nostro esperto Paolo Sgroi spiegherà la tecnica di stampa al torchio, come si è evoluta la stampa nel tempo. Potrai, inoltre, ammirare una delle tele più importanti del pittore Mauro De Carli, nostro collaboratore per il Liceo Artistico.",
+                                    "L’affascinante tecnica di stampa al torchio e la sua evoluzione, in compagnia di un video sul Liceo Artistico e di una delle tele più importanti del pittore Mauro De Carli, nostro collaboratore per il Liceo Artistico.",
                                     R.drawable.pittura)
             ),
             new Aula(12, 2, new LatLng(45.616940, 9.383257),
                     new Attivita
                             ("Presentazione Liceo Scienze applicate",
                                     "Prof. Silva Marina",
-                                    "In quest’aula la prof.ssa Silva, vi presenta il liceo Scientifico opzione Scienze Applicate , il quadro orario, il potenziamento motorio  e linguistico, le nuove metodologie didattiche, gli sbocchi.",
+                                    "Presentazione del liceo Scientifico opzione Scienze Applicate: quadro orario, potenziamento motorio  e linguistico, nuove metodologie didattiche, sbocchi.",
                                     R.drawable.galassia)
             ),
             new Aula(2, 2, new LatLng(45.616730, 9.383149),
                     new Attivita
                             ("Presentazione Indirizzo Biologico-Sanitario",
                                     "Prof. Erba",
-                                    "In quest’aula la prof.ssa Erba vi presenta l’indirizzo Biotecnologie Sanitarie e Ambientali, il quadro orario, le attività laboratoriali, gli sbocchi professionali.",
+                                    "Presentazione dell’indirizzo Biotecnologie Sanitarie e Ambientali: quadro orario, attività laboratoriali, nuove metodologie didattiche, sbocchi professionali.",
                                     R.drawable.farmaci)
             ),
             new Aula("Lab. di Chimica", 2, new LatLng(45.616778, 9.382995),
                     new Attivita
                             ("Dai colori alla chimica in cucina",
                                     "Prof. Tornaghi",
+                                    "Scopri come la chimica può influenzare il mondo della cucina.",
                                     R.drawable.cucina)
             ),
             new Aula("Lab. Chimica Organica", 2, new LatLng(45.616811, 9.383092),
@@ -59,25 +60,28 @@ public class ListaAule
                     new Attivita
                             ("Tutti i segreti del microscopio",
                                     "Prof. Palermo",
+                                    "Il microscopio è uno strumento atto a dare immagini ingrandite di oggetti molto piccoli rivelando dettagli altrimenti invisibili. Sei pronto a guardare il mondo con occhi diversi ?",
                                     R.drawable.microscopio)
             ),
             new Aula("Lab. Disegno 1", 3, new LatLng(45.616999, 9.383804),
                     new Attivita
                             ("Dall’idea all’oggetto",
                                     "Prof. Cocina - Prof. Cazzaniga - Prof. Previtali",
-                                    "In questo laboratorio il prof Cocina e Previtali vi spiegheranno le tecniche per la progettazione e stampa di un oggetto mediante stampa 3D.",
+                                    "Le tecniche per la progettazione e la realizzazione di un oggetto mediante stampa 3D.",
                                     R.drawable.disegno)
             ),
             new Aula(13, 4, new LatLng(45.616947, 9.383382),
                     new Attivita
                             ("Informazioni sul Liceo Sportivo",
                                     "Prof. Riva",
+                                    "Trova qui tutte le informazioni che ti servono per iscriverti al nuovo liceo sportivo.",
                                     R.drawable.calcio)
             ),
             new Aula("Lab. Sistemi 2", 1, new LatLng(45.615952, 9.383956),
                     new Attivita
                             ("Presentazione Ind. Elettronico: Robot… il tuo futuro",
                                     "Prof. Cerri - Prof. Pagano",
+                                    "Ti sei mai chiesto come funziona un robot ? Non aspettare più e vieni a scoprire come crearne uno.",
                                     R.drawable.robot)
             ),
             new Aula("Lab. TDP", 1, new LatLng(45.616034, 9.383868),
@@ -96,47 +100,49 @@ public class ListaAule
                     new Attivita
                             ("Presentazione ind. Informatico: dall’hardware al software… un percorso innovativo!",
                                     "Prof. Iannì",
-                                    "Il prof. Iannì presenta l’indirizzo informatico; quindi il piano orario, le discipline di indirizzo, le attività che vengono svolte, le certificazioni Cisco a cui aderiamo, gli sbocchi professionali.",
+                                    "Presentazione dell’indirizzo informatico: piano orario, discipline di indirizzo, attività, certificazioni Cisco a cui aderiamo, sbocchi professionali.",
                                     R.drawable.tastiera)
             ),
-            new Aula("Biologia", 2, new LatLng(45.617178, 9.383921),
+            new Aula("Lab. Biologia", 2, new LatLng(45.617178, 9.383921),
                     new Attivita
                             ("La biologia intorno a noi",
                                     "Prof. Trifiletti",
+                                    "È tutto partito da una sola cellula. Scopri cos'è successo dopo.",
                                     R.drawable.dna)
             ),
             new Aula("Lab. Informatica", 0, new LatLng(45.616194, 9.384556),
                     new Attivita
                             ("Realizziamo un’App - Costruiamo un sito web",
                                     "Prof. Purgatorio - Prof. Campesan",
-                                    "In questo laboratorio potrai vedere da vicino come si sviluppa un’App, un sito web, un programma in Java o in C….il mondo del software come tu lo immagini.",
+                                    "Come si sviluppa un’App, un sito web, un programma in Java o in C. Il mondo del software come tu lo immagini!",
                                     R.drawable.html)
             ),
             new Aula("Lab. Cisco", 0, new LatLng(45.616597, 9.384398),
                     new Attivita
                             ("Incontriamo gli apparati Cisco",
                                     "Prof. Catalano - Prof. Gaglione",
-                                    "In questo Laboratorio Cisco potrai vedere da vicino gli apparati di rete Cisco quali router, switch fondamentali per la creazione di una rete informatica.",
+                                    "Nel laboratorio Cisco a incontrare gli apparati di rete Cisco quali router e switch, fondamentali per la creazione di una rete informatica.",
                                     R.drawable.cisco)
             ),
             new Aula(25, 3, new LatLng(45.616980, 9.384117),
                     new Attivita
                             ("Immagini e parole: lettura di un'opera d'arte",
                                     "Prof. Tresoldi",
-                                    "In quest’aula la prof. Tresoldi terrà una lezione aperta sulla lettura di un’opera d’arte, una interessante esperienza che ti permetterà di capire il valore dell’arte.",
+                                    "Una lezione aperta sulla lettura di un’opera d’arte, un incontro suggestivo e poetico con la grande arte e i grandi artisti.",
                                     R.drawable.libri)
             ),
             new Aula(20, -1, new LatLng(45.617072, 9.383625),
                     new Attivita
                             ("Le certificazioni linguistiche… una finestra sul mondo!",
                                     "Prof. Fea",
-                                    "In quest’aula la prof.ssa Fea vi spiegherà il valore delle certificazioni linguistiche e le attività inerenti l’area linguistica che vengono svolte all’interno dell’Istituto.",
+                                    "Il valore delle certificazioni linguistiche e le attività inerenti l’area linguistica che vengono svolte all’interno dell’Istituto.",
                                     R.drawable.lingue)
             ),
             new Aula(39, -1, new LatLng(45.616428, 9.384592),
                     new Attivita
                             ("Alternanza Scuola Lavoro",
                                     "Prof. Russo",
+                                    "I progetti di Alternanza Scuola‐Lavoro nascono dall’esigenza di superare la distinzione di tre mondi solo apparentemente lontani tra loro: la scuola, il territorio ed il lavoro. Trova qui più informazioni.",
                                     R.drawable.ufficio)
             ),
             new Aula("Aula 3.0", -1, new LatLng(45.616832, 9.384237),
@@ -150,13 +156,14 @@ public class ListaAule
                     new Attivita
                             ("Presentazione della scuola con i video",
                                     "Alunni Scopazzo e Dinella 5D",
-                                    "In questa aula i nostri alunni mostreranno i video più belli sulla scuola realizzati dal nostro ex studente Davide Piras.",
+                                    "In compagnia di alcuni nostri alunni, i video più belli sull’Einstein realizzati dal nostro ex studente Davide Piras.",
                                     R.drawable.videocamera)
             ),
             new Aula("Polifunzionale", -1, new LatLng(45.616263, 9.384725),
                     new Attivita
                             ("Le nostre eccellenze",
                                     "Resp. Prof. Donatella Bonati",
+                                    "Scopri le eccellenze della scuola IIS Einstein.",
                                     R.drawable.podium)
             )
     };
