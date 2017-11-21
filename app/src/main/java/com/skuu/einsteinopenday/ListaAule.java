@@ -27,7 +27,7 @@ public class ListaAule
                     new Attivita
                             ("Presentazione Liceo Scienze applicate",
                                     "Prof. Silva Marina",
-                                    "Presentazione del liceo Scientifico opzione Scienze Applicate: quadro orario, potenziamento motorio  e linguistico, nuove metodologie didattiche, sbocchi.",
+                                    "Presentazione del liceo Scientifico opzione Scienze Applicate: quadro orario, potenziamento motorio e linguistico, nuove metodologie didattiche, sbocchi.",
                                     R.drawable.galassia)
             ),
             new Aula(2, 2, new LatLng(45.616730, 9.383149),

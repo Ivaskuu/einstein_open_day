@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -251,6 +252,25 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         menuInflater.inflate(R.menu.menu, menu);
 
         return true;
+    }
+
+    // On menu click
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.menu_btn_sito:
+                Intent sitoIntent= new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.einsteinvimercate.gov.it/"));
+                startActivity(sitoIntent);
+                return true;
+            case R.id.menu_btn_info:
+                Intent infoIntent= new Intent(MainActivity.this, InfoActivity.class);
+                startActivity(infoIntent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     // On bottom nav bar swipe up

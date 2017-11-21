@@ -4,9 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/btnLista"
-        android:title="@string/menu_lista_attivita"
-        android:icon="@drawable/ic_format_list_bulleted"
+        android:id="@+id/menu_btn_sito"
+        android:icon="@drawable/ic_open_in_browser"
+        android:title="@string/apri_sito_scuola"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/menu_btn_info"
+        android:icon="@drawable/ic_open_in_browser"
+        android:title="@string/info_app"
+        app:showAsAction="never" />
 </menu>
