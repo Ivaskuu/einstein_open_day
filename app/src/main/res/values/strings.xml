@@ -8,12 +8,12 @@
     <string name="menu_cat_info">Informatica</string>
     <string name="menu_cat_ele">Elettronica</string>
     <string name="menu_cat_bio">Biotecnologie</string>
+    <string name="menu_cat_liceo">Liceo scientifico</string>
     <string name="menu_cat_art">Artistico</string>
 
     <string name="menu_info">Informazioni</string>
     <string name="piu_informazioni">Visualizza</string>
     <string name="recensici">Recensici</string>
-    <string name="menu_cat_sport">Sportivo</string>
     <string name="prefs_localizzazione">localizzazione</string>
     <string name="apri_sito_scuola">Apri il sito della scuola</string>
     <string name="info_app">Informazioni sull\'app</string>

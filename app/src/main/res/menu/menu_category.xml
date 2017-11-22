@@ -21,15 +21,15 @@
         android:title="@string/menu_cat_bio"
         app:showAsAction="ifRoom" />
     <item
+        android:id="@+id/action_liceo"
+        android:enabled="true"
+        android:icon="@drawable/ic_microscope"
+        android:title="@string/menu_cat_liceo"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/action_art"
         android:enabled="true"
         android:icon="@drawable/ic_brush_24dp"
         android:title="@string/menu_cat_art"
-        app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_sport"
-        android:enabled="true"
-        android:icon="@drawable/ic_directions_run"
-        android:title="@string/menu_cat_sport"
         app:showAsAction="ifRoom" />
 </menu>

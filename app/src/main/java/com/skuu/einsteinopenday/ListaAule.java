@@ -9,21 +9,21 @@ public class ListaAule
 {
     public static Aula[] adule =
     {
-            new Aula("Lab Disegno 2", 3, new LatLng(45.616727, 9.383946),
+            new Aula("Lab Disegno 2", 4, new LatLng(45.616727, 9.383946),
                     new Attivita
                             ("Laboratorio di manipolazione argilla",
                                     "Esperto: Annapina",
                                     "Un laboratorio per sperimentare le tecniche di modellizzazione dell’argilla, manipolandola e plasmando forme artistiche.",
                                     R.drawable.manipolazione_argilla)
                     ),
-            new Aula(28, 3, new LatLng(45.616777, 9.384078),
+            new Aula(28, 4, new LatLng(45.616777, 9.384078),
                     new Attivita
                             ("Salone di Pittura – Stampatore",
                                     "Esperto: Paolo Sgroi",
                                     "L’affascinante tecnica di stampa al torchio e la sua evoluzione, in compagnia di un video sul Liceo Artistico e di una delle tele più importanti del pittore Mauro De Carli, nostro collaboratore per il Liceo Artistico.",
                                     R.drawable.pittura)
             ),
-            new Aula(12, 2, new LatLng(45.616940, 9.383257),
+            new Aula(12, 3, new LatLng(45.616940, 9.383257),
                     new Attivita
                             ("Presentazione Liceo Scienze applicate",
                                     "Prof. Silva Marina",
@@ -56,6 +56,13 @@ public class ListaAule
                                     "Prof. Siragusa - Prof. Gazzaneo",
                                     R.drawable.corrente)
             ),
+            new Aula("Lab. di Microbiologia", 3, new LatLng(45.616100, 9.384023),
+                    new Attivita
+                            ("Tutti i segreti del microscopio",
+                                    "Prof. Palermo",
+                                    "Il microscopio è uno strumento atto a dare immagini ingrandite di oggetti molto piccoli rivelando dettagli altrimenti invisibili. Sei pronto a guardare il mondo con occhi diversi ?",
+                                    R.drawable.microscopio)
+            ),
             new Aula("Lab. di Microbiologia", 2, new LatLng(45.616100, 9.384023),
                     new Attivita
                             ("Tutti i segreti del microscopio",
@@ -63,14 +70,14 @@ public class ListaAule
                                     "Il microscopio è uno strumento atto a dare immagini ingrandite di oggetti molto piccoli rivelando dettagli altrimenti invisibili. Sei pronto a guardare il mondo con occhi diversi ?",
                                     R.drawable.microscopio)
             ),
-            new Aula("Lab. Disegno 1", 3, new LatLng(45.616999, 9.383804),
+            new Aula("Lab. Disegno 1", 4, new LatLng(45.616999, 9.383804),
                     new Attivita
                             ("Dall’idea all’oggetto",
                                     "Prof. Cocina - Prof. Cazzaniga - Prof. Previtali",
                                     "Le tecniche per la progettazione e la realizzazione di un oggetto mediante stampa 3D.",
                                     R.drawable.disegno)
             ),
-            new Aula(13, 4, new LatLng(45.616947, 9.383382),
+            new Aula(13, 3, new LatLng(45.616947, 9.383382),
                     new Attivita
                             ("Informazioni sul Liceo Sportivo",
                                     "Prof. Riva",
@@ -124,7 +131,7 @@ public class ListaAule
                                     "Nel laboratorio Cisco a incontrare gli apparati di rete Cisco quali router e switch, fondamentali per la creazione di una rete informatica.",
                                     R.drawable.cisco)
             ),
-            new Aula(25, 3, new LatLng(45.616980, 9.384117),
+            new Aula(25, 4, new LatLng(45.616980, 9.384117),
                     new Attivita
                             ("Immagini e parole: lettura di un'opera d'arte",
                                     "Prof. Tresoldi",
@@ -149,7 +156,7 @@ public class ListaAule
                     new Attivita
                             ("Lab. grafico-multimediale. Giornalino scolastico. I nostri video",
                                     "Prof. Imperatore - Esperto: Andrea Ligabo",
-                                    "Nella cornice dell'innovativa aula 3.0, la redazione di Click!, giornalino d'istituto, scrive e impagina articoli, presentando un'antologia di video prodotti dagli studenti dell'Einstein. Contemporaneamente, gli studenti dell'Artistico svolgono un laboratorio di elaborazione grafia delle immagini.",
+                                    "Nella cornice dell'innovativa aula 3.0, la redazione di Click!, giornalino d'istituto, scrive e impagina articoli, presentando un'antologia di video prodotti dagli studenti dell'Einstein. Contemporaneamente, gli studenti dell'Artistico svolgono un laboratorio di elaborazione grafica delle immagini.",
                                     R.drawable.giornalino)
             ),
             new Aula(27, -1, new LatLng(45.616927, 9.384167),
