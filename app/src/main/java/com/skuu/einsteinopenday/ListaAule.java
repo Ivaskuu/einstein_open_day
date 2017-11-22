@@ -41,33 +41,35 @@ public class ListaAule
                     new Attivita
                             ("Dai colori alla chimica in cucina",
                                     "Prof. Tornaghi",
-                                    "Scopri come la chimica può influenzare il mondo della cucina.",
+                                    "Il mondo della chimica e della cucina sono intrecciati tra loro, in un abbraccio di mille colori.",
                                     R.drawable.cucina)
             ),
             new Aula("Lab. Chimica Organica", 2, new LatLng(45.616811, 9.383092),
                     new Attivita
                             ("I profumi e gli olii essenziali",
                                     "Prof. Breglia",
+                                    "Produrre profumi e olii essenziali è una raffinata forma d’arte, da esplorare con tutti i sensi.",
                                     R.drawable.profumo)
             ),
             new Aula("Lab. Chimica Fisica", 2, new LatLng(45.616143, 9.384155),
                     new Attivita
                             ("Dalle reazioni alla corrente elettrica",
                                     "Prof. Siragusa - Prof. Gazzaneo",
+                                    "Un laboratorio elettrizzante, alla scoperta della scintilla da cui sgorga l’energia che muove i nostri prodotti tecnologici.",
                                     R.drawable.corrente)
             ),
             new Aula("Lab. di Microbiologia", 3, new LatLng(45.616100, 9.384023),
                     new Attivita
                             ("Tutti i segreti del microscopio",
                                     "Prof. Palermo",
-                                    "Il microscopio è uno strumento atto a dare immagini ingrandite di oggetti molto piccoli rivelando dettagli altrimenti invisibili. Sei pronto a guardare il mondo con occhi diversi ?",
+                                    "Un salto verso l’infinitamente piccolo, alla ricerca dell’invisibile. Sei pronto a guardare il mondo con occhi diversi?",
                                     R.drawable.microscopio)
             ),
             new Aula("Lab. di Microbiologia", 2, new LatLng(45.616100, 9.384023),
                     new Attivita
                             ("Tutti i segreti del microscopio",
                                     "Prof. Palermo",
-                                    "Il microscopio è uno strumento atto a dare immagini ingrandite di oggetti molto piccoli rivelando dettagli altrimenti invisibili. Sei pronto a guardare il mondo con occhi diversi ?",
+                                    "Il microscopio è uno strumento atto a dare immagini ingrandite di oggetti molto piccoli rivelando dettagli altrimenti invisibili. Sei pronto a guardare il mondo con occhi diversi?",
                                     R.drawable.microscopio)
             ),
             new Aula("Lab. Disegno 1", 4, new LatLng(45.616999, 9.383804),
@@ -81,26 +83,28 @@ public class ListaAule
                     new Attivita
                             ("Informazioni sul Liceo Sportivo",
                                     "Prof. Riva",
-                                    "Trova qui tutte le informazioni che ti servono per iscriverti al nuovo liceo sportivo.",
+                                    "Trova qui tutte le informazioni che ti servono sul nuovo liceo sportivo.",
                                     R.drawable.calcio)
             ),
             new Aula("Lab. Sistemi 2", 1, new LatLng(45.615952, 9.383956),
                     new Attivita
                             ("Presentazione Ind. Elettronico: Robot… il tuo futuro",
                                     "Prof. Cerri - Prof. Pagano",
-                                    "Ti sei mai chiesto come funziona un robot ? Non aspettare più e vieni a scoprire come crearne uno.",
+                                    "Ti sei mai chiesto come funziona un robot? Non aspettare oltre e vieni a scoprire come crearne uno.",
                                     R.drawable.robot)
             ),
             new Aula("Lab. TDP", 1, new LatLng(45.616034, 9.383868),
                     new Attivita
                             ("Progettazione di apparecchiature elettroniche",
                                     "Prof. Nava",
+                                    "Dall’idea al progetto, esplorando il mondo dell’elettronica.",
                                     R.drawable.progettazione_chip)
             ),
             new Aula("Lab. Elettronica", 1, new LatLng(45.615927, 9.383650),
                     new Attivita
                             ("Alla scoperta delle apparecchiature elettroniche",
                                     "Prof. Racanati",
+                                    "Un viaggio sorprendente nei circuiti e nelle loro applicazioni.",
                                     R.drawable.chip)
             ),
             new Aula("Lab. Sistemi 1", 0, new LatLng(45.616018, 9.384107),
@@ -119,9 +123,9 @@ public class ListaAule
             ),
             new Aula("Lab. Informatica", 0, new LatLng(45.616194, 9.384556),
                     new Attivita
-                            ("Realizziamo un’App - Costruiamo un sito web",
+                            ("Realizziamo un'app - Costruiamo un sito web",
                                     "Prof. Purgatorio - Prof. Campesan",
-                                    "Come si sviluppa un’App, un sito web, un programma in Java o in C. Il mondo del software come tu lo immagini!",
+                                    "Come si sviluppa un'App, un sito web, un programma in Java o in C. Il mondo del software come tu lo immagini!",
                                     R.drawable.html)
             ),
             new Aula("Lab. Cisco", 0, new LatLng(45.616597, 9.384398),
@@ -149,7 +153,7 @@ public class ListaAule
                     new Attivita
                             ("Alternanza Scuola Lavoro",
                                     "Prof. Russo",
-                                    "I progetti di Alternanza Scuola‐Lavoro nascono dall’esigenza di superare la distinzione di tre mondi solo apparentemente lontani tra loro: la scuola, il territorio ed il lavoro. Trova qui più informazioni.",
+                                    "I progetti di Alternanza Scuola‐Lavoro nascono dall’esigenza di superare la distinzione di tre mondi solo apparentemente lontani tra loro: la scuola, il territorio ed il lavoro. Qui tutto quello che ti serve sapere.",
                                     R.drawable.ufficio)
             ),
             new Aula("Aula 3.0", -1, new LatLng(45.616832, 9.384237),
@@ -163,14 +167,14 @@ public class ListaAule
                     new Attivita
                             ("Presentazione della scuola con i video",
                                     "Alunni Scopazzo e Dinella 5D",
-                                    "In compagnia di alcuni nostri alunni, i video più belli sull’Einstein realizzati dal nostro ex studente Davide Piras.",
+                                    "In compagnia di alcuni nostri alunni, i video più belli sull’Einstein realizzati dal nostro ex studente Davide Piras. Buona visione!",
                                     R.drawable.videocamera)
             ),
             new Aula("Polifunzionale", -1, new LatLng(45.616263, 9.384725),
                     new Attivita
                             ("Le nostre eccellenze",
                                     "Resp. Prof. Donatella Bonati",
-                                    "Scopri le eccellenze della scuola IIS Einstein.",
+                                    "Gli studenti presentano progetti e lavori che hanno vinto premi nell’anno scolastico 2016/2017. E non sono pochi!",
                                     R.drawable.podium)
             )
     };

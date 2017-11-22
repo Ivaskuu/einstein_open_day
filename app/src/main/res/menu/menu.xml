@@ -10,6 +10,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/menu_btn_valuta"
+        android:icon="@drawable/ic_open_in_browser"
+        android:title="@string/valuta_app"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/menu_btn_info"
         android:icon="@drawable/ic_open_in_browser"
         android:title="@string/info_app"

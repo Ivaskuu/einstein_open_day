@@ -264,6 +264,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Intent sitoIntent= new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.einsteinvimercate.gov.it/"));
                 startActivity(sitoIntent);
                 return true;
+            case R.id.menu_btn_valuta:
+                Intent playStoreIntent= new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.skuu.einsteinopenday"));
+                startActivity(playStoreIntent);
+                return true;
             case R.id.menu_btn_info:
                 Intent infoIntent= new Intent(MainActivity.this, InfoActivity.class);
                 startActivity(infoIntent);
